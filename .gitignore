@@ -1,0 +1,49 @@
+# MediaMTX
+mediamtx/mediamtx.zip
+mediamtx/mediamtx.exe
+
+# Archives & large local datasets
+*.zip
+
+# Java
+server/target/
+server/.idea/
+*.class
+
+# Node
+web/node_modules/
+web/dist/
+
+# Data & logs
+server/data/
+logs/
+*.db
+
+# YOLO / Python
+ai/yolov8/.venv/
+ai/yolov8/runs/
+!ai/yolov8/runs/.gitkeep
+**/__pycache__/
+*.pt
+ai/yolov8/weights/
+ai/yolov8/runs/
+
+# ONNX weights (large; see models/README.md)
+models/*.onnx
+
+# Training / reference copies
+yolo_data/
+web/src_ref/
+
+# Local assets & logs
+server/boot-test.log
+沙盘图片/
+111/
+*.mp4
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml

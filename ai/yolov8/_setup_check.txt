@@ -1,0 +1,10 @@
+﻿cwd=D:\git-project\smart-traffic-vision2
+venv_exists=True
+proc_count=4
+PID=3940 Name=python
+PID=4228 Name=python
+PID=18320 Name=python
+PID=23400 Name=python
+leftover=pip-26.1.2.dist-info
+leftover=~ip-26.1.2.dist-info
+leftover_count=2

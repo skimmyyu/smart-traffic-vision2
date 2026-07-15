@@ -1,0 +1,36 @@
+【MySQL 数据库配置 — 本机】
+
+■ 本机账号（已写入 application.yml）
+  用户名：root
+  密码：123456
+  库名：traffic_db
+  地址：127.0.0.1:3306
+
+■ 1. 确认 MySQL 服务已启动
+  服务名一般为 MySQL80
+
+■ 2. 初始化库表（项目根目录）
+  init-database.bat
+
+  或手动：
+  "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p123456 < server\sql\init.sql
+
+■ 3. 后端配置文件
+  server\src\main\resources\application.yml
+    spring.datasource.username: root
+    spring.datasource.password: "123456"
+
+■ 4. 验证
+  mysql -u root -p123456 -e "USE traffic_db; SHOW TABLES;"
+  应看到至少：
+    devices, whitelist, plate_records, alerts, congestion_logs
+    parking_zones, road_segments, camera_road_rois
+
+■ 5. 启动
+  start-all.bat
+  或 server\start-server.bat
+
+■ 说明
+  - 前端已指向本机：http://127.0.0.1:8080
+  - 沙盘摄像头仍为学院网：10.126.59.120（需能访问才能拉流）
+  - mock.inference.enabled 当前为 false，需 YOLO live_bridge 才有真实检测框

@@ -1,0 +1,33 @@
+【704 沙盘固定摄像头 — RTSP 拉流】
+（来源：学院沙盘摄像头视频流获取说明）
+
+■ 服务器地址（无账号密码）
+  rtsp://10.126.59.120:8554/live/liveN   (N = 1～12)
+
+■ 12 路通道（与学院文档一致）
+  live1   桥面              live7   道路2
+  live2   停车场出口        live8   隧道(事故识别)
+  live3   行人检测          live9   隧道(车辆数量)
+  live4   消防车识别        live10  道路3
+  live5   桥出口            live11  停车场入口
+  live6   桥入口            live12  道路1  ← 默认
+
+■ 功能建议
+  车牌/闸机: live11, live2, live5, live6
+  拥堵热力图: live12, live7, live10
+  禁停: live2, live11
+  道路异常: live12, live3, live6, live7
+
+■ 两种用法
+
+【A】VLC 直连沙盘（选视角最快）
+  rtsp://10.126.59.120:8554/live/live12
+  改后缀 live1～live12 即可切换画面，无需 MediaMTX
+
+【B】经 MediaMTX 给 Java / Dashboard 用
+  1. stop-mediamtx.bat → start-mediamtx.bat
+  2. set-sandbox-camera.bat 选通道
+  3. VLC: rtsp://127.0.0.1:8554/cam1
+
+■ 若报 port 8000/8554 占用
+  先运行 stop-mediamtx.bat（旧 MediaMTX 未关）

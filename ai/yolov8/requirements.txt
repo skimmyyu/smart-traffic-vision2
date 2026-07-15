@@ -1,0 +1,7 @@
+ultralytics>=8.3.0
+opencv-python>=4.8.0
+pillow>=10.0.0
+pyyaml>=6.0
+rapidocr-onnxruntime>=1.4.0
+# Install torch separately with CUDA 12.8 (required for RTX 5070):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128

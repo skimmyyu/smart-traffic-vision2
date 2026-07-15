@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.traffic.mapper.AlertMapper">
+
+    <resultMap id="AlertMap" type="com.traffic.entity.Alert">
+        <id property="id" column="id"/>
+        <result property="alertType" column="alert_type"/>
+        <result property="description" column="description"/>
+        <result property="location" column="location"/>
+        <result property="occurredAt" column="occurred_at"/>
+    </resultMap>
+
+    <select id="findRecent" resultMap="AlertMap">
+        SELECT id, alert_type, description, CAST(location AS CHAR) AS location, occurred_at
+        FROM alerts
+        ORDER BY occurred_at DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="countToday" resultType="int">
+        SELECT COUNT(*)
+        FROM alerts
+        WHERE DATE(occurred_at) = CURDATE()
+    </select>
+
+    <select id="countTodayByType" resultType="int">
+        SELECT COUNT(*) FROM alerts
+        WHERE DATE(occurred_at) = CURDATE() AND alert_type = #{alertType}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO alerts (alert_type, description, location, occurred_at)
+        VALUES (#{alertType}, #{description}, #{location}, #{occurredAt})
+    </insert>
+
+</mapper>

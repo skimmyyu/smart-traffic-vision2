@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.traffic.mapper.ParkingZoneMapper">
+
+    <resultMap id="ParkingZoneMap" type="com.traffic.entity.ParkingZone">
+        <id property="id" column="id"/>
+        <result property="channelId" column="channel_id"/>
+        <result property="name" column="name"/>
+        <result property="points" column="points"/>
+        <result property="enabled" column="enabled"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <select id="findByChannel" resultMap="ParkingZoneMap">
+        SELECT id, channel_id, name, CAST(points AS CHAR) AS points, enabled, created_at, updated_at
+        FROM parking_zones
+        WHERE channel_id = #{channelId}
+        ORDER BY id ASC
+    </select>
+
+    <select id="findEnabledByChannel" resultMap="ParkingZoneMap">
+        SELECT id, channel_id, name, CAST(points AS CHAR) AS points, enabled, created_at, updated_at
+        FROM parking_zones
+        WHERE channel_id = #{channelId} AND enabled = 1
+        ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="ParkingZoneMap">
+        SELECT id, channel_id, name, CAST(points AS CHAR) AS points, enabled, created_at, updated_at
+        FROM parking_zones
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO parking_zones (channel_id, name, points, enabled, created_at, updated_at)
+        VALUES (#{channelId}, #{name}, #{points}, #{enabled}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="update">
+        UPDATE parking_zones
+        SET name = #{name},
+            points = #{points},
+            enabled = #{enabled},
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM parking_zones WHERE id = #{id}
+    </delete>
+
+</mapper>

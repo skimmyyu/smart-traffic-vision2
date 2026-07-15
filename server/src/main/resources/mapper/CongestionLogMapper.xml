@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.traffic.mapper.CongestionLogMapper">
+
+    <resultMap id="CongestionLogMap" type="com.traffic.entity.CongestionLog">
+        <id property="id" column="id"/>
+        <result property="vehicleCount" column="vehicle_count"/>
+        <result property="heatmapData" column="heatmap_data"/>
+        <result property="statTime" column="stat_time"/>
+    </resultMap>
+
+    <select id="findRecent" resultMap="CongestionLogMap">
+        SELECT id, vehicle_count, CAST(heatmap_data AS CHAR) AS heatmap_data, stat_time
+        FROM congestion_logs
+        ORDER BY stat_time DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="findLatest" resultMap="CongestionLogMap">
+        SELECT id, vehicle_count, CAST(heatmap_data AS CHAR) AS heatmap_data, stat_time
+        FROM congestion_logs
+        ORDER BY stat_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="avgVehicleCountToday" resultType="double">
+        SELECT IFNULL(AVG(vehicle_count), 0)
+        FROM congestion_logs
+        WHERE DATE(stat_time) = CURDATE()
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO congestion_logs (vehicle_count, heatmap_data, stat_time)
+        VALUES (#{vehicleCount}, #{heatmapData}, #{statTime})
+    </insert>
+
+</mapper>

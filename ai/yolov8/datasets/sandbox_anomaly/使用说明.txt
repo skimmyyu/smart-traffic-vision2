@@ -1,0 +1,30 @@
+道路异常标注目录说明
+====================
+
+推荐数据目录：
+  C:\yolo_data\sandbox_anomaly\
+
+目录结构：
+  images\train\   ← 训练图片
+  images\val\     ← 验证图片（约 8:2）
+  labels\train\   ← 与图片同名的 YOLO 标签 .txt
+  labels\val\
+  classes.txt
+  data.yaml
+
+类别（只有 1 类）：
+  0  debris   异物（锥桶/纸盒/瓶子/布条等，凡是路上不该有的都标这一类）
+
+标签格式（每行一个框）：
+  0 <x_center> <y_center> <width> <height>
+  （后面四个数为相对宽高的 0~1）
+
+建议：总共约 80~120 张；多换位置/角度；留一些空场景。
+摄像头优先 live8。
+
+LabelImg：
+  图片目录 = images\train
+  类别文件 = classes.txt
+  保存目录 = labels\train
+  格式选 YOLO
+  框一律选 debris（异物）

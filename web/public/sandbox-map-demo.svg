@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1000" viewBox="0 0 1800 1000">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#edf0f2"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7f8f8"/><stop offset=".5" stop-color="#aeb6bb"/><stop offset="1" stop-color="#e7eaec"/></linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5bab6"/><stop offset="1" stop-color="#676e69"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#9ca3af" stroke-width="1" opacity=".14"/></pattern>
+    <pattern id="windows" width="18" height="14" patternUnits="userSpaceOnUse"><path d="M0 4h18M0 11h18" stroke="#fff" stroke-width="2" opacity=".58"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#111827" flood-opacity=".25"/></filter>
+    <filter id="bridgeShadow"><feDropShadow dx="5" dy="9" stdDeviation="5" flood-color="#111827" flood-opacity=".32"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#fff"/></marker>
+    <g id="tree"><circle r="13" fill="#777e78" stroke="#454b46" stroke-width="3"/><circle cx="-7" cy="-4" r="7" fill="#9ca19d"/><rect x="-2" y="11" width="4" height="12" fill="#555"/></g>
+  </defs>
+
+  <rect width="1800" height="1000" fill="url(#ground)"/><rect width="1800" height="1000" fill="url(#grid)"/>
+
+  <!-- 黑色道路、白色标线：颜色覆盖只由上层热力区域产生 -->
+  <g fill="#171a1d" stroke="#71777d" stroke-width="8">
+    <!-- 停车场左侧双车道 -->
+    <rect x="230" y="76" width="112" height="840" rx="10"/>
+    <!-- 停车场后第一组双车道 -->
+    <rect x="230" y="174" width="570" height="92" rx="0"/>
+    <!-- 山体隧道双车道到后侧后右转，成为通往高架桥的后方双车道 -->
+    <rect x="130" y="78" width="890" height="96" rx="8"/>
+    <!-- 五车道从左向右第2、3车道直接向上进入高架引道 -->
+    <rect x="796" y="78" width="100" height="110" rx="0"/>
+    <!-- 停车场右侧 / 商务区左侧五车道 -->
+    <rect x="746" y="176" width="252" height="650" rx="10"/>
+    <!-- 商务区右侧三车道 -->
+    <rect x="1490" y="170" width="168" height="656" rx="10"/>
+    <!-- 停车场前方三车道 -->
+    <rect x="228" y="622" width="770" height="152" rx="10"/>
+    <!-- 商务区前方五车道 -->
+    <rect x="994" y="574" width="668" height="248" rx="10"/>
+    <!-- 停车场后、前闸机通道与道路连通 -->
+    <rect x="620" y="260" width="94" height="92" rx="0"/>
+    <rect x="620" y="590" width="94" height="40" rx="0"/>
+  </g>
+
+  <!-- 交汇处统一覆盖为完整黑色路口，消除道路边框互相叠压的接缝 -->
+  <g fill="#171a1d">
+    <!-- 两组后方双车道紧贴，中间不留底色或道路边框缝隙 -->
+    <rect x="350" y="166" width="388" height="16"/>
+    <rect x="222" y="78" width="128" height="188"/>
+    <rect x="738" y="78" width="268" height="188"/>
+    <rect x="220" y="614" width="130" height="168"/>
+    <rect x="738" y="614" width="268" height="168"/>
+    <rect x="986" y="566" width="76" height="264"/>
+    <rect x="1482" y="566" width="184" height="264"/>
+  </g>
+
+  <!-- 各道路车道线在交叉口前终止，路口中心保持纯黑留白 -->
+  <g fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="27 21" opacity=".96">
+    <!-- 所有车道虚线均在斑马线前停止，不穿过人行横道 -->
+    <path d="M286 326V560M286 834v78"/>
+    <path d="M414 220H674"/>
+    <path d="M205 126H348M414 126H674M920 126h40"/>
+    <!-- 五车道第2、3车道向上分流 --> <path d="M846 84v78"/>
+    <!-- 右侧5车道，三个路口及斑马线均留空 --> <path d="M796 184v34M846 184v34M896 184v34M946 184v34M796 350v204M846 350v204M896 350v204M946 350v204"/>
+    <!-- 商务区右3车道，在斑马线前停止 --> <path d="M1546 210V510M1602 210V510"/>
+    <!-- 停车场前3车道，左右斑马线之间分段 --> <path d="M238 673H348M414 673H674M238 724H348M414 724H674"/>
+    <!-- 商务区前5车道，左右斑马线之间分段 --> <path d="M1038 624H1062M1122 624H1422M1038 674H1062M1122 674H1422M1038 724H1062M1122 724H1422M1038 774H1062M1122 774H1422"/>
+  </g>
+
+  <!-- 后方双车道在桥头拓宽为三车道；不再与停车场后方双车道交叉合流 -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#bridgeShadow)">
+    <path d="M960 126H1484Q1574 126 1574 216V826" stroke="#777e84" stroke-width="170"/>
+    <path d="M960 126H1484Q1574 126 1574 216V826" stroke="#202428" stroke-width="152"/>
+    <!-- 弯道中心不画虚线，水平段和竖直段分别平行，避免虚线相交 -->
+    <path d="M960 101H1450M1549 246V510M1549 566V826" stroke="#fff" stroke-width="4" stroke-dasharray="28 22"/>
+    <path d="M960 151H1450M1599 246V510M1599 566V826" stroke="#fff" stroke-width="4" stroke-dasharray="28 22"/>
+  </g>
+  <g stroke="#72787d" fill="#d8dcdf" stroke-width="6">
+    <path d="M1080 184V54M1370 156V28"/><path d="M1080 58l-92 139M1080 58l90 97M1370 32l-120 111M1370 32l113 143" fill="none" stroke-width="4"/>
+    <rect x="1067" y="46" width="26" height="34"/><rect x="1357" y="20" width="26" height="34"/>
+  </g>
+
+  <!-- 山体缩在停车场左侧双车道之外；隧道双车道从地图最前端贯穿到最后端 -->
+  <g filter="url(#shadow)">
+    <path d="M0 205c40-61 75-61 103 1 36-85 83-77 111 5 21 90 17 386-16 548H0z" fill="url(#hill)" stroke="#4d534e" stroke-width="8"/>
+    <path d="M0 360c48-54 91-48 126 12 31-70 60-62 84-8" fill="none" stroke="#d4d7d4" stroke-width="14" opacity=".5"/>
+    <rect x="76" y="0" width="116" height="1000" rx="48" fill="#080a0c" stroke="#6b7176" stroke-width="8"/>
+    <!-- 与后方高架引道相交处留空，隧道车道线不穿过路口 -->
+    <path d="M134 18V29M134 76V176M134 226v756" stroke="#fff" stroke-width="5" stroke-dasharray="28 22"/>
+    <g stroke="#fff" stroke-width="4"><path d="M88 35v35M100 35v35M112 35v35M124 35v35M144 35v35M156 35v35M168 35v35M180 35v35M88 182v38M100 182v38M112 182v38M124 182v38M144 182v38M156 182v38M168 182v38M180 182v38"/></g>
+    <path d="M70 222q64-42 128 0M70 744q64 42 128 0" fill="none" stroke="#a5aaae" stroke-width="12"/>
+    <text x="118" y="500" fill="#fff" font-size="18" font-family="Microsoft YaHei" font-weight="700" text-anchor="middle" transform="rotate(-90 118 500)">前后贯穿双车道隧道</text>
+    <text x="52" y="700" fill="#f7f7f7" font-size="20" font-family="Microsoft YaHei" font-weight="700" text-anchor="middle" transform="rotate(-90 52 700)">山体景观区</text>
+  </g>
+
+  <!-- 3×3停车场，共9个停车位 -->
+  <g filter="url(#shadow)">
+    <rect x="374" y="344" width="340" height="250" rx="16" fill="#3b3f42" stroke="#858b8f" stroke-width="6"/>
+    <g fill="#919691" stroke="#fff" stroke-width="4">
+      <rect x="394" y="362" width="88" height="58"/><rect x="500" y="362" width="88" height="58"/><rect x="606" y="362" width="88" height="58"/>
+      <rect x="394" y="437" width="88" height="58"/><rect x="500" y="437" width="88" height="58"/><rect x="606" y="437" width="88" height="58"/>
+      <rect x="394" y="512" width="88" height="58"/><rect x="500" y="512" width="88" height="58"/><rect x="606" y="512" width="88" height="58"/>
+    </g>
+    <g fill="#fff" font-family="Arial" font-size="15" font-weight="700" text-anchor="middle">
+      <text x="438" y="398">P-01</text><text x="544" y="398">P-02</text><text x="650" y="398">P-03</text>
+      <text x="438" y="473">P-04</text><text x="544" y="473">P-05</text><text x="650" y="473">P-06</text>
+      <text x="438" y="548">P-07</text><text x="544" y="548">P-08</text><text x="650" y="548">P-09</text>
+    </g>
+    <text x="544" y="336" fill="#25282b" font-size="22" font-family="Microsoft YaHei" font-weight="700" text-anchor="middle">3×3停车场 · 9车位</text>
+    <!-- 后闸机 --> <rect x="685" y="297" width="20" height="56" fill="#777"/><path d="M695 308h-74" stroke="#222" stroke-width="8"/><text x="665" y="290" fill="#303438" font-size="16" font-family="Microsoft YaHei">后闸机</text>
+    <!-- 前闸机 --> <rect x="685" y="588" width="20" height="56" fill="#777"/><path d="M695 600h-74" stroke="#222" stroke-width="8"/><text x="665" y="665" fill="#fff" font-size="16" font-family="Microsoft YaHei">前闸机</text>
+  </g>
+
+  <!-- 中央商务区，桥位于其后方 -->
+  <g filter="url(#shadow)">
+    <rect x="1042" y="264" width="414" height="294" fill="url(#grid)" stroke="#a2a7aa" stroke-width="4"/>
+    <g fill="url(#glass)" stroke="#687178" stroke-width="5">
+      <rect x="1070" y="314" width="104" height="218" rx="9"/><rect x="1190" y="274" width="112" height="258" rx="9"/><rect x="1318" y="306" width="106" height="226" rx="9"/>
+      <rect x="1114" y="380" width="116" height="164" rx="9"/><rect x="1264" y="372" width="116" height="172" rx="9"/>
+    </g>
+    <g fill="url(#windows)" opacity=".8"><rect x="1078" y="324" width="88" height="196"/><rect x="1198" y="284" width="96" height="236"/><rect x="1326" y="316" width="90" height="204"/><rect x="1122" y="390" width="100" height="142"/><rect x="1272" y="382" width="100" height="150"/></g>
+    <text x="1248" y="300" fill="#23272a" font-size="22" font-family="Microsoft YaHei" font-weight="700" text-anchor="middle">中央商务区</text>
+  </g>
+
+  <!-- 商务区五车道前方的消防救援站 -->
+  <g filter="url(#shadow)">
+    <rect x="1080" y="852" width="430" height="116" rx="10" fill="#d9dcde" stroke="#777e83" stroke-width="5"/>
+    <rect x="1102" y="916" width="82" height="40" fill="#686d70"/><rect x="1200" y="916" width="82" height="40" fill="#686d70"/><rect x="1298" y="916" width="82" height="40" fill="#686d70"/><rect x="1396" y="916" width="82" height="40" fill="#686d70"/>
+    <rect x="1100" y="872" width="390" height="30" fill="#fafafa" stroke="#777" stroke-width="2"/>
+    <text x="1295" y="895" fill="#202326" font-size="22" font-family="Microsoft YaHei" font-weight="700" text-anchor="middle">消防救援站</text>
+  </g>
+
+  <!-- 斑马线位于路口四周；每条白线与所在道路的行驶方向平行 -->
+  <g stroke="#fff" stroke-width="5" opacity=".96">
+    <!-- 后方四车道与停车场左侧道路 -->
+    <path d="M354 92h54M354 106h54M354 120h54M354 134h54M354 148h54M354 186h54M354 200h54M354 214h54M354 228h54M354 242h54"/>
+    <path d="M242 274v46M256 274v46M270 274v46M284 274v46M298 274v46M312 274v46M326 274v46"/>
+    <!-- 后方四车道与五车道路口 -->
+    <path d="M680 88h54M680 102h54M680 116h54M680 130h54M680 144h54M680 184h54M680 198h54M680 212h54M680 226h54M680 240h54"/>
+    <path d="M758 274v46M780 274v46M802 274v46M824 274v46M846 274v46M868 274v46M890 274v46M912 274v46M934 274v46M956 274v46M978 274v46"/>
+    <!-- 停车场前三车道与左、右道路交汇 -->
+    <path d="M354 636h54M354 652h54M354 668h54M354 684h54M354 700h54M354 716h54M354 732h54M354 748h54"/>
+    <path d="M242 566v44M258 566v44M274 566v44M290 566v44M306 566v44M322 566v44M242 786v42M258 786v42M274 786v42M290 786v42M306 786v42M322 786v42"/>
+    <path d="M680 636h54M680 652h54M680 668h54M680 684h54M680 700h54M680 716h54M680 732h54M680 748h54"/>
+    <path d="M758 566v44M780 566v44M802 566v44M824 566v44M846 566v44M868 566v44M890 566v44M912 566v44M934 566v44M956 566v44M978 566v44M758 786v42M780 786v42M802 786v42M824 786v42M846 786v42M868 786v42M890 786v42M912 786v42M934 786v42M956 786v42M978 786v42"/>
+    <!-- 商务区前方道路两端路口 -->
+    <path d="M1068 590h48M1068 608h48M1068 626h48M1068 644h48M1068 662h48M1068 680h48M1068 698h48M1068 716h48M1068 734h48M1068 752h48M1068 770h48M1068 788h48"/>
+    <path d="M1428 590h48M1428 608h48M1428 626h48M1428 644h48M1428 662h48M1428 680h48M1428 698h48M1428 716h48M1428 734h48M1428 752h48M1428 770h48M1428 788h48"/>
+    <path d="M1502 516v44M1522 516v44M1542 516v44M1562 516v44M1582 516v44M1602 516v44M1622 516v44M1642 516v44M1502 834v42M1522 834v42M1542 834v42M1562 834v42M1582 834v42M1602 834v42M1622 834v42M1642 834v42"/>
+  </g>
+  <g fill="none" stroke="#fff" stroke-width="4" marker-end="url(#arrow)" opacity=".84">
+    <path d="M420 648h72M650 698h-72M1050 604h80M1390 754h-80"/><path d="M258 380v75M315 520v-75M776 420v75M968 545v-75M1518 420v75M1630 560v-75"/>
+  </g>
+
+  <!-- 黑白绿化行列 -->
+  <g>
+    <use href="#tree" x="360" y="322"/><use href="#tree" x="420" y="322"/><use href="#tree" x="480" y="322"/><use href="#tree" x="540" y="322"/><use href="#tree" x="600" y="322"/><use href="#tree" x="660" y="322"/><use href="#tree" x="720" y="322"/>
+    <use href="#tree" x="1030" y="556"/><use href="#tree" x="1090" y="556"/><use href="#tree" x="1150" y="556"/><use href="#tree" x="1210" y="556"/><use href="#tree" x="1270" y="556"/><use href="#tree" x="1330" y="556"/><use href="#tree" x="1390" y="556"/><use href="#tree" x="1450" y="556"/>
+  </g>
+
+  <!-- 拓扑说明 -->
+  <g font-family="Microsoft YaHei" font-weight="700" text-anchor="middle">
+    <g fill="#fff" font-size="18"><text x="286" y="860" transform="rotate(-90 286 860)">停车场左侧 · 2车道</text><text x="870" y="790" transform="rotate(-90 870 790)">停车场右侧 / 商务区左侧 · 5车道</text><text x="1574" y="520" transform="rotate(-90 1574 520)">商务区右侧 · 合流3车道</text><text x="535" y="750">停车场前方 · 3车道</text><text x="1325" y="804">商务区前方 · 5车道</text></g>
+    <text x="520" y="206" fill="#fff" font-size="17">停车场后方2车道</text><text x="520" y="110" fill="#fff" font-size="17">相邻高架引道2车道</text><text x="1210" y="140" fill="#fff" font-size="17">桥头拓宽为3车道 · 商务区后方</text>
+  </g>
+
+  <g font-family="Microsoft YaHei"><rect x="22" y="20" width="500" height="48" rx="10" fill="#fff" stroke="#7b8389" stroke-width="2"/><text x="44" y="51" fill="#1f2933" font-size="21" font-weight="700">沙盘黑白拓扑底图 · 颜色仅表示区域车辆密度</text></g>
+</svg>

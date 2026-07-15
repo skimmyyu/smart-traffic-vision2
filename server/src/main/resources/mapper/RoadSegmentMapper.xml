@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.traffic.mapper.RoadSegmentMapper">
+
+    <resultMap id="RoadSegmentMap" type="com.traffic.entity.RoadSegment">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="capacity" column="capacity"/>
+        <result property="mapPoints" column="map_points"/>
+        <result property="enabled" column="enabled"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="RoadSegmentMap">
+        SELECT id, name, capacity, CAST(map_points AS CHAR) AS map_points, enabled, created_at, updated_at
+        FROM road_segments
+        ORDER BY id ASC
+    </select>
+
+    <select id="findEnabled" resultMap="RoadSegmentMap">
+        SELECT id, name, capacity, CAST(map_points AS CHAR) AS map_points, enabled, created_at, updated_at
+        FROM road_segments
+        WHERE enabled = 1
+        ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="RoadSegmentMap">
+        SELECT id, name, capacity, CAST(map_points AS CHAR) AS map_points, enabled, created_at, updated_at
+        FROM road_segments
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO road_segments (name, capacity, map_points, enabled, created_at, updated_at)
+        VALUES (#{name}, #{capacity}, #{mapPoints}, #{enabled}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="update">
+        UPDATE road_segments
+        SET name = #{name},
+            capacity = #{capacity},
+            map_points = #{mapPoints},
+            enabled = #{enabled},
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM road_segments WHERE id = #{id}
+    </delete>
+
+</mapper>

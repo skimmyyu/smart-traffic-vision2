@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.traffic.mapper.PlateRecordMapper">
+
+    <resultMap id="PlateRecordMap" type="com.traffic.entity.PlateRecord">
+        <id property="id" column="id"/>
+        <result property="plateNumber" column="plate_number"/>
+        <result property="passResult" column="pass_result"/>
+        <result property="cameraId" column="camera_id"/>
+        <result property="cameraName" column="camera_name"/>
+        <result property="recognizedAt" column="recognized_at"/>
+    </resultMap>
+
+    <select id="findRecent" resultMap="PlateRecordMap">
+        SELECT id, plate_number, pass_result, camera_id, camera_name, recognized_at
+        FROM plate_records
+        ORDER BY recognized_at DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="findSince" resultMap="PlateRecordMap">
+        SELECT id, plate_number, pass_result, camera_id, camera_name, recognized_at
+        FROM plate_records
+        WHERE recognized_at &gt;= #{since}
+        ORDER BY recognized_at DESC
+    </select>
+
+    <select id="countToday" resultType="int">
+        SELECT COUNT(*)
+        FROM plate_records
+        WHERE DATE(recognized_at) = CURDATE()
+    </select>
+
+    <select id="findLatestByPlate" resultMap="PlateRecordMap">
+        SELECT id, plate_number, pass_result, camera_id, camera_name, recognized_at
+        FROM plate_records
+        WHERE plate_number = #{plateNumber}
+        ORDER BY recognized_at DESC
+        LIMIT 1
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO plate_records (plate_number, pass_result, camera_id, camera_name, recognized_at)
+        VALUES (#{plateNumber}, #{passResult}, #{cameraId}, #{cameraName}, #{recognizedAt})
+    </insert>
+
+</mapper>
