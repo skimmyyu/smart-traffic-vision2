@@ -28,7 +28,6 @@ ai/yolov8/weights/
 ai/yolov8/runs/
 
 # ONNX weights (large; see models/README.md)
-models/*.onnx
 
 # Training / reference copies
 yolo_data/
